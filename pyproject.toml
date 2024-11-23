@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cloudpwn"]
+
+[project]
+name = "cloudpwn"
+version = "0.0.1"
+authors = [
+    { name = "Aju Tamang" },
+]
+description = "Perform enumeration and generate reports of public cloud!"
+keywords = ["cloud security"]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Intended Audience :: Pentester",
+]
+dependencies = [
+    "boto3==1.35.67",
+    "botocore==1.35.67",
+    "click==8.1.7",
+    "jmespath==1.0.1",
+    "markdown-it-py==3.0.0",
+    "mdurl==0.1.2",
+    "Pygments==2.18.0",
+    "python-dateutil==2.9.0.post0",
+    "rich==13.9.4",
+    "s3transfer==0.10.4",
+    "shellingham==1.5.4",
+    "six==1.16.0",
+    "typer==0.13.1",
+    "typing_extensions==4.12.2",
+    "urllib3==2.2.3",
+    "black==24.10.0",
+    "mypy-extensions==1.0.0",
+    "packaging==24.2",
+    "pathspec==0.12.1",
+    "platformdirs==4.3.6",
+    "astroid==3.3.5",
+    "dill==0.3.9",
+    "isort==5.13.2",
+    "mccabe==0.7.0",
+    "pylint==3.3.1",
+    "tomlkit==0.13.2",
+    "PyYAML==6.0.2", 
+    "bandit==1.7.10", 
+    "pbr==6.1.0", 
+    "stevedore==5.4.0",
+    "mypy==1.13.0",
+    "flake8==7.1.1",
+    "pycodestyle==2.12.1",
+    "pyflakes==3.2.0",
+    "autopep8==2.3.1",
+    "tabulate==0.9.0",
+    "types-tabulate==0.9.0.20240106",
+    "boto3-stubs==1.35.68", 
+    "botocore-stubs==1.35.68",
+    "types-awscrt==0.23.0",
+    "types-s3transfer==0.10.4"
+]
+
+[project.urls]
+Repository = "https://github.com/ajutamangdev/cloudpwn"
+
+[project.scripts]
+cloudpwn = "cloudpwn.main:main"
