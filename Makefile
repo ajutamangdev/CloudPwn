@@ -32,7 +32,8 @@ setup: ## Set up the virtual environment and install dependencies
 	@echo "Installing dependencies..."
 	@source $(VENV_DIR)/bin/activate && pip install -e .
 	@echo -e "\n✅🎉 Done.\n"
-	@echo "➡️  source $(VENV_DIR)/bin/activate"
+	@echo "➡️ For Linux/MacOs source $(VENV_DIR)/bin/activate"
+	@echo "➡️ For Windows source $(VENV_DIR)/Scripts/activate"
 	@echo "➡️  python3 cloudpwn/main.py"
 
 install: setup ## Install the project and dependencies

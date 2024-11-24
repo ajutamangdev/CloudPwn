@@ -28,7 +28,6 @@ def main(
     CloudPwn: A toolkit for cloud platform enumeration and exploitation.
 
     Example usage:
-    - python src/main.py aws --profile custom-profile
     - python src/main.py aws --profile custom-profile ec2 --region us-east-1
     """
 

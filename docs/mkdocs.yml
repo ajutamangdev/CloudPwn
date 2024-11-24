@@ -1,0 +1,139 @@
+site_name: CloudPwn
+site_description: Cloud security toolkit to perform enumeration in AWS, Azure, and GCP
+site_url: https://github.com/ajutamangdev/CloudPwn
+theme:
+  name: material
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/lightbulb-auto
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to system preference
+  features:
+  - content.code.annotate
+  - content.code.copy
+  # - content.code.select
+  - content.footnote.tooltips
+  - content.tabs.link
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.instant
+  - navigation.instant.prefetch
+  # - navigation.instant.preview
+  - navigation.instant.progress
+  - navigation.path
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+
+  icon:
+    repo: fontawesome/brands/github-alt
+repo_name: ajutamangdev/CloudPwn
+repo_url: https://github.com/ajutamangdev/cloudpwn
+plugins:
+  mkdocstrings:
+    handlers:
+      python:
+        options:
+          extensions:
+          - griffe_typingdoc
+          show_root_heading: true
+          show_if_no_docstring: true
+          preload_modules:
+          - httpx
+          - starlette
+          inherited_members: true
+          members_order: source
+          separate_signature: true
+          unwrap_annotated: true
+          filters:
+          - '!^_'
+          merge_init_into_class: true
+          docstring_section_style: spacy
+          signature_crossrefs: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+
+nav:
+- CloudPwn: index.md
+- Getting Started:
+  - Installation: installation.md
+  - Quick Start: quickstart.md
+- Usage: usage.md
+
+markdown_extensions:
+  # Python Markdown
+  abbr:
+  attr_list:
+  footnotes:
+  md_in_html:
+  tables:
+  toc:
+    permalink: true
+
+  # Python Markdown Extensions
+  pymdownx.betterem:
+  pymdownx.caret:
+  pymdownx.highlight:
+    line_spans: __span
+  pymdownx.inlinehilite:
+  pymdownx.keys:
+  pymdownx.mark:
+  pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.tilde:
+
+  # pymdownx blocks
+  pymdownx.blocks.admonition:
+    types:
+    - note
+    - attention
+    - caution
+    - danger
+    - error
+    - tip
+    - hint
+    - warning
+    # Custom types
+    - info
+    - check
+  pymdownx.blocks.details:
+  pymdownx.blocks.tab:
+    alternate_style: True
+
+  # Other extensions
+  mdx_include:
+  markdown_include_variants:
+
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/ajutamangdev/cloudpwn
+  - icon: fontawesome/brands/bluesky
+    link: https://bsky.app/profile/ajutamang.bsky.social
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/aju-tamang
+  - icon: fontawesome/brands/twitter
+    link: https://x.com/_ajutamang_
