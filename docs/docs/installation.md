@@ -91,4 +91,4 @@ If you encounter issues:
     aws sts get-caller-identity  
     ```
 
-> For additional help, refer to the [Need Help section](http://localhost:8000/ajutamangdev/CloudPwn/#need-help) or contact me via the social links.
+> For additional help, refer to the [Need Help section](http://ajutamangdev.github.io/CloudPwn/#need-help) or contact me via the social links.
