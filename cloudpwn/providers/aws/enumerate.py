@@ -27,7 +27,47 @@ def enumerate_specific_service(service, profile, region):
 
     if service == "ec2":
         ec2 = EC2(profile, region)
-        formatted_output = ec2.enumerate_ec2_instances()
-        rich_print(formatted_output)
+        print("╔═════════════════════════════════════╗")
+        print("║         EC2 Instances               ║")
+        print("╚═════════════════════════════════════╝")
+
+        formatted_ec2 = ec2.enumerate_ec2_instances()
+        rich_print(formatted_ec2)
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Volumes                     ║")
+        print("╚═════════════════════════════════════╝")
+        volume = ec2.enumerate_volumes()
+        rich_print(volume)
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Snapshot Results            ║")
+        print("╚═════════════════════════════════════╝")
+        snapshots = ec2.enumerate_snapshots()
+        rich_print(snapshots)
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Elastic IP Results          ║")
+        print("╚═════════════════════════════════════╝")
+        eip = ec2.enumerate_elastic_ip()
+        rich_print(eip)
+
+        print("╔═════════════════════════════════════╗")
+        print("║         AMI Results                 ║")
+        print("╚═════════════════════════════════════╝")
+        amis = ec2.enumerate_custom_amis()
+        rich_print(amis)
+
+        print("╔═════════════════════════════════════╗")
+        print("║         SSM Agent                   ║")
+        print("╚═════════════════════════════════════╝")
+        ssm_agent = ec2.enumerate_ssm_agent_status()
+        rich_print(ssm_agent)
+
+        print("╔════════════════════════════════════════════╗")
+        print("║            Security Groups Info            ║")
+        print("╚════════════════════════════════════════════╝")
+        security_groups_ec2 = ec2.enumerate_security_groups()
+        rich_print(security_groups_ec2)
     else:
         print("Unsupported services")
