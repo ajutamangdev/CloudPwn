@@ -1,3 +1,7 @@
+"""
+This module provides the Secrets class that handles the enumeration of Secret Manager services.
+"""
+
 import json
 import boto3
 from botocore.exceptions import ClientError
@@ -23,6 +27,11 @@ class Secrets:
 
         :return: A list of secret metadata or an empty list if no secrets are found.
         """
+
+        print("╔═════════════════════════════════════════╗")
+        print("║         Secrets Manager                 ║")
+        print("╚═════════════════════════════════════════╝")
+
         try:
             secrets_list = []
             paginator = self.client.get_paginator("list_secrets")
