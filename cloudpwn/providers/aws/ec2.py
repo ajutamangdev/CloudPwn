@@ -95,6 +95,11 @@ class EC2:
 
     def enumerate_ec2_instances(self):
         """Retrieves and formats a list of EC2 instances."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         EC2 Instances               ║")
+        print("╚═════════════════════════════════════╝")
+
         instances = self.list_ec2_instances()
         if isinstance(instances, list):
             return self.format_as_ec2_table(instances)
@@ -107,6 +112,11 @@ class EC2:
 
     def enumerate_volumes(self):
         """Retrieves and formats a list of EC2 volumes."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Volumes                     ║")
+        print("╚═════════════════════════════════════╝")
+
         volumes = self.list_volumes()
         if isinstance(volumes, list):
             return self.format_as_volumes_table(volumes)
@@ -114,6 +124,7 @@ class EC2:
 
     def format_as_volumes_table(self, volumes):
         """Formats EC2 volumes data as a grid table for output."""
+
         headers = ["Volume ID", "Volume Name", "Size (GB)", "Attached Instance ID"]
         return tabulate(volumes, headers, tablefmt="grid")
 
@@ -136,6 +147,11 @@ class EC2:
 
     def enumerate_snapshots(self):
         """Retrieves and formats a list of EC2 snapshots."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Snapshot Results            ║")
+        print("╚═════════════════════════════════════╝")
+
         snapshots = self.describe_snapshots(OwnerIds=["self"])
         if isinstance(snapshots, list):
             return self.format_as_snapshots_table(snapshots)
@@ -148,6 +164,11 @@ class EC2:
 
     def enumerate_elastic_ip(self):
         """Retrieves and formats a list of Elastic IP addresses."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         Elastic IP Results          ║")
+        print("╚═════════════════════════════════════╝")
+
         ec2 = self.session.client("ec2", region_name=self.region)
         try:
             response = ec2.describe_addresses()
@@ -168,6 +189,11 @@ class EC2:
 
     def enumerate_custom_amis(self):
         """Retrieves and formats a list of custom AMIs owned by the user."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         AMI Results                 ║")
+        print("╚═════════════════════════════════════╝")
+
         ec2 = self.session.client("ec2", region_name=self.region)
         try:
             response = ec2.describe_images(Owners=["self"])
@@ -191,6 +217,11 @@ class EC2:
 
     def enumerate_ssm_agent_status(self):
         """Checks and formats the SSM Agent status of EC2 instances."""
+
+        print("╔═════════════════════════════════════╗")
+        print("║         SSM Agent                   ║")
+        print("╚═════════════════════════════════════╝")
+
         ssm = self.session.client("ssm", region_name=self.region)
         try:
             response = ssm.describe_instance_information()
@@ -234,9 +265,13 @@ class EC2:
         Retrieves and formats a list of security groups associated
         with EC2 instances along with open ports and other relevant data.
         """
+
+        print("╔═════════════════════════════════════╗")
+        print("║        Security Groups              ║")
+        print("╚═════════════════════════════════════╝")
+
         ec2 = self.session.client("ec2", region_name=self.region)
         try:
-            # Describe EC2 instances
             response = ec2.describe_instances()
             security_groups_info = []
 
@@ -312,4 +347,4 @@ class EC2:
     def format_as_security_groups_table(self, security_groups_info):
         """Formats the security group data as a grid table."""
         headers = ["Instance ID", "Security Group ID", "Security Group Rules"]
-        return tabulate(security_groups_info, headers, tablefmt="fancy_grid")
+        return tabulate(security_groups_info, headers, tablefmt="grid")

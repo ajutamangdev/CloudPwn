@@ -1,12 +1,7 @@
-"""
-This module provides functions that perform enumeration processes for AWS services.
-Full enumerations handle all AWS services and save the data in a CSV format.
-It also supports specific enumeration of AWS services.
-"""
-
 from rich import print as rich_print
 from cloudpwn.providers.aws.ec2 import EC2
-from cloudpwn.providers.aws.secret_manager import Secrets
+from cloudpwn.providers.aws.secrets_manager import Secrets
+from cloudpwn.providers.aws.rds import RDS
 from cloudpwn.config.settings import Config
 
 
@@ -21,64 +16,49 @@ def aws_enumerate_all(profile):
         print(f"[bold blue]Enumerating AWS services in region: {region}[/bold blue]")
         enumerate_specific_service("ec2", profile, region)
         enumerate_specific_service("secrets", profile, region)
+        enumerate_specific_service("rds", profile, region)
 
 
 def enumerate_specific_service(service, profile, region):
-    """Enumerates instances for the specified AWS service."""
-    service = str(service).lower()
+    """
+    Enumerates instances for the specified AWS service.
+    """
+    service = service.lower()
 
-    if service == "ec2":
-        ec2 = EC2(profile, region)
-        print("╔═════════════════════════════════════╗")
-        print("║         EC2 Instances               ║")
-        print("╚═════════════════════════════════════╝")
+    service_handlers = {
+        "ec2": lambda: enumerate_ec2(profile, region),
+        "secrets": lambda: enumerate_secrets(profile, region),
+        "rds": lambda: enumerate_rds(profile, region),
+    }
 
-        formatted_ec2 = ec2.enumerate_ec2_instances()
-        rich_print(formatted_ec2)
-
-        print("╔═════════════════════════════════════╗")
-        print("║         Volumes                     ║")
-        print("╚═════════════════════════════════════╝")
-        volume = ec2.enumerate_volumes()
-        rich_print(volume)
-
-        print("╔═════════════════════════════════════╗")
-        print("║         Snapshot Results            ║")
-        print("╚═════════════════════════════════════╝")
-        snapshots = ec2.enumerate_snapshots()
-        rich_print(snapshots)
-
-        print("╔═════════════════════════════════════╗")
-        print("║         Elastic IP Results          ║")
-        print("╚═════════════════════════════════════╝")
-        eip = ec2.enumerate_elastic_ip()
-        rich_print(eip)
-
-        print("╔═════════════════════════════════════╗")
-        print("║         AMI Results                 ║")
-        print("╚═════════════════════════════════════╝")
-        amis = ec2.enumerate_custom_amis()
-        rich_print(amis)
-
-        print("╔═════════════════════════════════════╗")
-        print("║         SSM Agent                   ║")
-        print("╚═════════════════════════════════════╝")
-        ssm_agent = ec2.enumerate_ssm_agent_status()
-        rich_print(ssm_agent)
-
-        print("╔═════════════════════════════════════╗")
-        print("║        Security Groups              ║")
-        print("╚═════════════════════════════════════╝")
-        security_groups_ec2 = ec2.enumerate_security_groups()
-        rich_print(security_groups_ec2)
-
-    if service == "secrets":
-        secrets = Secrets(profile, region)
-        print("╔═════════════════════════════════════════╗")
-        print("║         Secrets Manager                 ║")
-        print("╚═════════════════════════════════════════╝")
-
-        results = secrets.display_secrets()
-        rich_print(results)
+    if service in service_handlers:
+        service_handlers[service]()
     else:
-        print("Unsupported services")
+        rich_print(f"[bold red]Unsupported service: {service}[/bold red]")
+
+
+def enumerate_ec2(profile, region):
+    """Handles EC2 enumeration."""
+    ec2 = EC2(profile, region)
+
+    rich_print(ec2.enumerate_ec2_instances())
+    rich_print(ec2.enumerate_volumes())
+    rich_print(ec2.enumerate_snapshots())
+    rich_print(ec2.enumerate_elastic_ip())
+    rich_print(ec2.enumerate_custom_amis())
+    rich_print(ec2.enumerate_ssm_agent_status())
+    rich_print(ec2.enumerate_security_groups())
+
+
+def enumerate_secrets(profile, region):
+    """Handles Secrets Manager enumeration."""
+    secrets = Secrets(profile, region)
+    rich_print(secrets.display_secrets())
+
+
+def enumerate_rds(profile, region):
+    """Handles RDS enumeration."""
+    rds = RDS(profile, region)
+    rich_print(rds.enumerate_rds_instances())
+    rich_print(rds.enumerate_rds_clusters())
+    rich_print(rds.enumerate_rds_snapshots())
