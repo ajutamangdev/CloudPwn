@@ -6,7 +6,6 @@ CloudPwn is cloud enumeration toolkit, designed for security professionals and e
 
 - Cloud Enumeration: Efficiently map and uncover resources in your cloud environment [AWS].
 - Security Insights: Identify misconfigurations and vulnerabilities.
-- AI-Generated Reports: Leverage Large Language Models (LLMs) to generate detailed, human-readable reports for your findings.
 
 ## Getting Started
 

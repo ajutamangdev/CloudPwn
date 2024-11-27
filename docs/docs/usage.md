@@ -47,7 +47,13 @@ Option	Description	Default
     - Enumerate all EC2 instances in the us-west-2 region:
 
     ```
-    python3 cloudpwn/main.py aws ec2 --region us-west-2  
+    python3 cloudpwn/main.py aws --profile custom-profile ec2 --region us-west-2  
+    ```
+
+    - Enumerate all secrets from secrets manager in the ap-south-1 region
+
+    ```
+    python3 cloudpwn/main.py aws --profile custom-profile secrets --region ap-south-1
     ```
 
 
@@ -58,4 +64,5 @@ Option	Description	Default
 
 # Supported AWS Services
 - EC2 : Elastic Compute Cloud
+- Secrets Manager
 - Coming soon

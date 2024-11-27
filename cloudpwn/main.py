@@ -64,7 +64,7 @@ def main(
             else:
                 enumerate_specific_service(service, profile, region)
 
-                rich_print(f"\n[green]Enumerated {service} results:[/green]")
+                rich_print(f"\n[green]Enumerated {service} results[/green]")
     rich_print("Done!")
 
 
