@@ -575,7 +575,12 @@
 <ul>
 <li>Enumerate all EC2 instances in the us-west-2 region:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span id="__span-6-1">python3 cloudpwn/main.py aws ec2 --region us-west-2  
+<div class="highlight"><pre><span></span><code><span id="__span-6-1">python3 cloudpwn/main.py aws --profile custom-profile ec2 --region us-west-2  
+</span></code></pre></div>
+<ul>
+<li>Enumerate all secrets from secrets manager in the ap-south-1 region</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1">python3 cloudpwn/main.py aws --profile custom-profile secrets --region ap-south-1
 </span></code></pre></div>
 </li>
 </ul>
@@ -588,6 +593,7 @@
 <h1 id="supported-aws-services">Supported AWS Services<a class="headerlink" href="#supported-aws-services" title="Permanent link">&para;</a></h1>
 <ul>
 <li>EC2 : Elastic Compute Cloud</li>
+<li>Secrets Manager</li>
 <li>Coming soon</li>
 </ul>
 
