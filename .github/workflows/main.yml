@@ -1,0 +1,55 @@
+name: CloudPwn CI
+
+on:
+    push:
+      branches:
+        - '*'
+    pull_request:
+      branches:
+        - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12
+
+    - name: Set up virtual environment and install dependencies
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install --upgrade pip
+        pip install -e .
+
+    - name: Run linting (pylint)
+      run: |
+        source .venv/bin/activate
+        make lint
+
+    - name: Run formatting check (black)
+      run: |
+        source .venv/bin/activate
+        make format
+
+    - name: Run flake8 (code style checking)
+      run: |
+        source .venv/bin/activate
+        make flake8
+
+    - name: Run security audit (bandit)
+      run: |
+        source .venv/bin/activate
+        make audit
+
+    - name: Run type checking (mypy)
+      run: |
+        source .venv/bin/activate
+        make typecheck
+
