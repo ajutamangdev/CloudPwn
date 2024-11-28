@@ -53,7 +53,7 @@ class EKS:
 
         clusters = self.list_clusters()
         if not clusters:
-            print("No EKS clusters found.")
+            rich_print("No EKS clusters found.")
             return
 
         table_data = []

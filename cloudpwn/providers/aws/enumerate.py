@@ -4,6 +4,8 @@ from cloudpwn.providers.aws.secrets_manager import Secrets
 from cloudpwn.providers.aws.rds import RDS
 from cloudpwn.providers.aws.s3 import S3
 from cloudpwn.providers.aws.eks import EKS
+from cloudpwn.providers.aws.route53 import Route53
+from cloudpwn.providers.aws.iam import IAM
 from cloudpwn.config.settings import Config
 
 
@@ -33,6 +35,8 @@ def enumerate_specific_service(service, profile, region):
         "rds": lambda: enumerate_rds(profile, region),
         "s3": lambda: S3(profile, region).enumerate(),
         "eks": lambda: EKS(profile, region).enumerate(),
+        "route53": lambda: Route53(profile, region).enumerate(),
+        "iam": lambda: IAM(profile, region).enumerate(),
     }
 
     if service in service_handlers:
@@ -78,3 +82,15 @@ def enumerate_eks(profile, region):
     """Handles EKS enumeration."""
     eks = EKS(profile, region)
     rich_print(eks.enumerate())
+
+
+def enumerate_route53(profile, region):
+    """Handles Route 53 enumeration."""
+    route53 = Route53(profile, region)
+    rich_print(route53.enumerate())
+
+
+def enumerate_iam(profile, region):
+    """Handles IAM enumeration."""
+    iam = IAM(profile, region)
+    rich_print(iam.enumerate())
