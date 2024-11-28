@@ -21,6 +21,10 @@ def aws_enumerate_all(profile):
         enumerate_specific_service("ec2", profile, region)
         enumerate_specific_service("secrets", profile, region)
         enumerate_specific_service("rds", profile, region)
+        enumerate_specific_service("s3", profile, region)
+        enumerate_specific_service("eks", profile, region)
+        enumerate_specific_service("route53", profile, region)
+        enumerate_specific_service("iam", profile, region)
 
 
 def enumerate_specific_service(service, profile, region):

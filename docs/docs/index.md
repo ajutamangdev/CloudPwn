@@ -1,6 +1,6 @@
 # Welcome to CloudPwn
 
-CloudPwn is cloud enumeration toolkit, designed for security professionals and enthusiasts to uncover and analyze resources in cloud environments. With cutting-edge features like AI-powered report generation, CloudPwn aims to simplify and enhance your cloud security assessments too.
+CloudPwn is cloud enumeration toolkit, designed for security professionals and enthusiasts to uncover and analyze resources in cloud environments.
 
 ## Features
 

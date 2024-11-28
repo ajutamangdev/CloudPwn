@@ -63,6 +63,10 @@ Option	Description	Default
 - GCP
 
 # Supported AWS Services
-- EC2 : Elastic Compute Cloud
-- Secrets Manager
+- ec2 : Elastic Compute Cloud
+- secrets : Secrets Manager
+- rds : Relational Database Service
+- iam : Identity and Access Management
+- route53 : Route 53
+- eks : Elastic Kubernetes Service
 - Coming soon
