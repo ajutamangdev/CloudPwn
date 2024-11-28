@@ -5,6 +5,7 @@ This module provides the Secrets class that handles the enumeration of Secret Ma
 import json
 import boto3
 from botocore.exceptions import ClientError
+from rich import print as rich_print
 
 
 class Secrets:
@@ -83,5 +84,5 @@ class Secrets:
             secret_value = self.get_secret_value(secret_name)
             secrets_data.append({"Secret Name": secret_name, "Value": secret_value})
 
-        print(json.dumps(secrets_data, indent=4))
+        rich_print(json.dumps(secrets_data, indent=4))
         return ""

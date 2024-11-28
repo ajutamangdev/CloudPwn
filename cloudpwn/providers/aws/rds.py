@@ -5,6 +5,7 @@ This module provides the RDS class that handles the enumeration of RDS services.
 import boto3
 from botocore.exceptions import ClientError
 from tabulate import tabulate
+from rich import print as rich_print
 
 
 class RDS:
@@ -140,5 +141,5 @@ class RDS:
                         public_status,
                     ]
                 )
-            print(tabulate(table, headers=headers, tablefmt="grid"))
+            rich_print(tabulate(table, headers=headers, tablefmt="grid"))
         return ""
